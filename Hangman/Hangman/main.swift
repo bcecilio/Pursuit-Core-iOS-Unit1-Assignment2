@@ -33,12 +33,25 @@ print()
 var maxGuesses = 6
 var randomWord: [Character] = Array(allTheWords.randomElement() ?? "")
 var lettersUsed: [Character] = []
+var hangMan = ["""
+      ______
+      |    |
+      |    o
+      |   /|\
+      |   / \
+      |
+     _|_
+    |   |______
+    |          |
+    |__________|
+
+"""]
 
 // Characters are replaced with "_"
 var hiddenWord: [Character] = Array(repeating: "_", count: randomWord.count)
 print(String(hiddenWord))
 
-print(randomWord)
+print(String(randomWord))
 // User input
 
 // Checks if the character is part of the alphabet
@@ -63,46 +76,32 @@ repeat {
         for (index, _) in hiddenWord.enumerated(){
             if indices.contains(index){
                 hiddenWord[index] = enteredChar
+                
             }
         }
         
     } else {
         // Decrementing the amount of guesses after each guess
         maxGuesses -= 1
-        print("try again")
-        print("""
-          ____
-          |    |
-          |    o
-          |
-          |
-          |
-         _|_
-        |   |______
-        |          |
-        |__________|
- 
-""")
+        print("You have \(maxGuesses) left!")
+    }
+    
+    if maxGuesses == 0 {
+        print("Game Over")
+        print(hangMan)
+        sleep(1)
+        print("Would you like to play again?")
+        let decision = readLine()?.lowercased()
+        switch decision {
+        case "yes":
+            print("Then hit ⌘R!")
+        default:
+            break
+        }
     }
     
     print(String(hiddenWord))
     
 } while (maxGuesses > 0)
-
-//  ____
-//  |    |
-//  |    o
-//  |   /|\
-//  |    |
-//  |   /
-// _|_
-//|   |______
-//|          |
-//|__________|
-//
-
-
-
-
 
 
