@@ -15,7 +15,20 @@ print()
 sleep(1)
 print("Please guess the letters in the random word, you only have 6 guesses... choose wisely 🤠")
 print()
+print("""
+    ______
+    |    |
+    |
+    |
+    |
+    |
+    |___
+    |   |______
+    |          |
+    |__________|
+    """)
 sleep(2)
+print()
 // variables/constants
 var maxGuesses = 6
 var randomWord: [Character] = Array(allTheWords.randomElement() ?? "")
@@ -23,7 +36,7 @@ var lettersUsed: [Character] = []
 
 // Characters are replaced with "_"
 var hiddenWord: [Character] = Array(repeating: "_", count: randomWord.count)
-print(hiddenWord)
+print(String(hiddenWord))
 
 print(randomWord)
 // User input
@@ -43,7 +56,7 @@ repeat {
         for (index, char) in randomWord.enumerated(){
             if enteredChar == char {
                 indices.insert(index)
-                print(index) /* shows the index letter is placed */
+                // print(index) /* shows the index letter is placed */
             }
         }
         
@@ -56,14 +69,37 @@ repeat {
     } else {
         // Decrementing the amount of guesses after each guess
         maxGuesses -= 1
-        print("try again ")
+        print("try again")
+        print("""
+          ____
+          |    |
+          |    o
+          |
+          |
+          |
+         _|_
+        |   |______
+        |          |
+        |__________|
+ 
+""")
     }
     
     print(String(hiddenWord))
     
 } while (maxGuesses > 0)
-//
 
+//  ____
+//  |    |
+//  |    o
+//  |   /|\
+//  |    |
+//  |   /
+// _|_
+//|   |______
+//|          |
+//|__________|
+//
 
 
 
